@@ -1,0 +1,485 @@
+{
+    "1": {
+        "name": "Flur",
+        "lights": [
+            "17",
+            "18"
+        ],
+        "sensors": [],
+        "type": "Room",
+        "state": {
+            "all_on": true,
+            "any_on": true
+        },
+        "recycle": false,
+        "class": "Hallway",
+        "action": {
+            "on": true,
+            "bri": 127,
+            "ct": 366,
+            "alert": "select",
+            "colormode": "ct"
+        }
+    },
+    "2": {
+        "name": "Jonahs Zimmer",
+        "lights": [
+            "3",
+            "5",
+            "4",
+            "10"
+        ],
+        "sensors": [],
+        "type": "Room",
+        "state": {
+            "all_on": true,
+            "any_on": true
+        },
+        "recycle": false,
+        "class": "Kids bedroom",
+        "action": {
+            "on": true,
+            "bri": 76,
+            "hue": 13523,
+            "sat": 200,
+            "effect": "none",
+            "xy": [
+                0.5017,
+                0.4152
+            ],
+            "ct": 443,
+            "alert": "select",
+            "colormode": "hs"
+        }
+    },
+    "3": {
+        "name": "Dachboden",
+        "lights": [
+            "21",
+            "26",
+            "27",
+            "23",
+            "28",
+            "22",
+            "20",
+            "25",
+            "24",
+            "19"
+        ],
+        "sensors": [],
+        "type": "Room",
+        "state": {
+            "all_on": true,
+            "any_on": true
+        },
+        "recycle": false,
+        "class": "Attic",
+        "action": {
+            "on": true,
+            "bri": 189,
+            "hue": 7726,
+            "sat": 197,
+            "effect": "none",
+            "xy": [
+                0.4994,
+                0.4153
+            ],
+            "ct": 443,
+            "alert": "select",
+            "colormode": "ct"
+        }
+    },
+    "4": {
+        "name": "Office",
+        "lights": [],
+        "sensors": [],
+        "type": "Entertainment",
+        "state": {
+            "all_on": false,
+            "any_on": false
+        },
+        "recycle": false,
+        "class": "TV",
+        "stream": {
+            "proxymode": "auto",
+            "proxynode": "/bridge",
+            "active": false,
+            "owner": null
+        },
+        "locations": {},
+        "action": {
+            "on": false,
+            "alert": "none"
+        }
+    },
+    "5": {
+        "name": "Jonah",
+        "lights": [
+            "5",
+            "3",
+            "4"
+        ],
+        "sensors": [],
+        "type": "Entertainment",
+        "state": {
+            "all_on": true,
+            "any_on": true
+        },
+        "recycle": false,
+        "class": "TV",
+        "stream": {
+            "proxymode": "manual",
+            "proxynode": "/lights/4",
+            "active": false,
+            "owner": null
+        },
+        "locations": {
+            "5": [
+                -1.00,
+                0.66,
+                0.00
+            ],
+            "3": [
+                0.03,
+                -0.41,
+                0.00
+            ],
+            "4": [
+                -0.04,
+                0.66,
+                0.00
+            ]
+        },
+        "action": {
+            "on": true,
+            "bri": 76,
+            "hue": 13523,
+            "sat": 200,
+            "effect": "none",
+            "xy": [
+                0.5017,
+                0.4152
+            ],
+            "ct": 443,
+            "alert": "select",
+            "colormode": "xy"
+        }
+    },
+    "6": {
+        "name": "TV",
+        "lights": [
+            "16"
+        ],
+        "sensors": [],
+        "type": "Entertainment",
+        "state": {
+            "all_on": false,
+            "any_on": false
+        },
+        "recycle": false,
+        "class": "TV",
+        "stream": {
+            "proxymode": "auto",
+            "proxynode": "/bridge",
+            "active": false,
+            "owner": null
+        },
+        "locations": {
+            "16": [
+                -0.40,
+                0.80,
+                -0.40
+            ]
+        },
+        "action": {
+            "on": false,
+            "bri": 51,
+            "hue": 8380,
+            "sat": 141,
+            "effect": "none",
+            "xy": [
+                0.4583,
+                0.4099
+            ],
+            "ct": 366,
+            "alert": "select",
+            "colormode": "xy"
+        }
+    },
+    "7": {
+        "name": "Jonah",
+        "lights": [
+            "4",
+            "3",
+            "5"
+        ],
+        "sensors": [],
+        "type": "Zone",
+        "state": {
+            "all_on": true,
+            "any_on": true
+        },
+        "recycle": false,
+        "class": "Computer",
+        "action": {
+            "on": true,
+            "bri": 77,
+            "hue": 13523,
+            "sat": 200,
+            "effect": "none",
+            "xy": [
+                0.5017,
+                0.4152
+            ],
+            "ct": 443,
+            "alert": "select",
+            "colormode": "xy"
+        }
+    },
+    "8": {
+        "name": "Terrasse",
+        "lights": [
+            "8",
+            "11",
+            "6",
+            "12",
+            "7"
+        ],
+        "sensors": [],
+        "type": "Room",
+        "state": {
+            "all_on": false,
+            "any_on": false
+        },
+        "recycle": false,
+        "class": "Terrace",
+        "action": {
+            "on": false,
+            "bri": 254,
+            "alert": "select"
+        }
+    },
+    "9": {
+        "name": "Wohnzimmer",
+        "lights": [
+            "16"
+        ],
+        "sensors": [],
+        "type": "Room",
+        "state": {
+            "all_on": false,
+            "any_on": false
+        },
+        "recycle": false,
+        "class": "Living room",
+        "action": {
+            "on": false,
+            "bri": 51,
+            "hue": 8380,
+            "sat": 141,
+            "effect": "none",
+            "xy": [
+                0.4583,
+                0.4099
+            ],
+            "ct": 366,
+            "alert": "select",
+            "colormode": "xy"
+        }
+    },
+    "11": {
+        "name": "Custom group for $lights",
+        "lights": [
+            "6",
+            "7",
+            "8",
+            "11",
+            "12",
+            "19",
+            "20",
+            "21",
+            "22",
+            "23",
+            "24",
+            "25",
+            "26",
+            "27",
+            "28",
+            "30",
+            "31"
+        ],
+        "sensors": [],
+        "type": "LightGroup",
+        "state": {
+            "all_on": false,
+            "any_on": true
+        },
+        "recycle": true,
+        "action": {
+            "on": false,
+            "bri": 254,
+            "hue": 7726,
+            "sat": 197,
+            "effect": "none",
+            "xy": [
+                0.4994,
+                0.4153
+            ],
+            "ct": 443,
+            "alert": "select",
+            "colormode": "hs"
+        }
+    },
+    "12": {
+        "name": "Video",
+        "lights": [
+            "29"
+        ],
+        "sensors": [],
+        "type": "Room",
+        "state": {
+            "all_on": false,
+            "any_on": false
+        },
+        "recycle": false,
+        "class": "Other",
+        "action": {
+            "on": false,
+            "alert": "select"
+        }
+    },
+    "13": {
+        "name": "Eingang",
+        "lights": [
+            "31",
+            "30"
+        ],
+        "sensors": [],
+        "type": "Room",
+        "state": {
+            "all_on": false,
+            "any_on": false
+        },
+        "recycle": false,
+        "class": "Other",
+        "action": {
+            "on": false,
+            "bri": 254,
+            "alert": "select"
+        }
+    },
+    "14": {
+        "name": "Draußen",
+        "lights": [
+            "6",
+            "7",
+            "31",
+            "11",
+            "8",
+            "12",
+            "30"
+        ],
+        "sensors": [],
+        "type": "Zone",
+        "state": {
+            "all_on": false,
+            "any_on": false
+        },
+        "recycle": false,
+        "class": "Other",
+        "action": {
+            "on": false,
+            "bri": 254,
+            "alert": "select"
+        }
+    },
+    "15": {
+        "name": "Custom group for $lights",
+        "lights": [
+            "16",
+            "19",
+            "20"
+        ],
+        "sensors": [],
+        "type": "LightGroup",
+        "state": {
+            "all_on": false,
+            "any_on": true
+        },
+        "recycle": true,
+        "action": {
+            "on": true,
+            "bri": 189,
+            "hue": 7726,
+            "sat": 197,
+            "effect": "none",
+            "xy": [
+                0.4994,
+                0.4153
+            ],
+            "ct": 443,
+            "alert": "select",
+            "colormode": "ct"
+        }
+    },
+    "16": {
+        "name": "Küche",
+        "lights": [
+            "41",
+            "37",
+            "38",
+            "34",
+            "33",
+            "36",
+            "39",
+            "32",
+            "35",
+            "40"
+        ],
+        "sensors": [],
+        "type": "Room",
+        "state": {
+            "all_on": false,
+            "any_on": false
+        },
+        "recycle": false,
+        "class": "Kitchen",
+        "action": {
+            "on": false,
+            "bri": 254,
+            "ct": 366,
+            "alert": "select",
+            "colormode": "ct"
+        }
+    },
+    "17": {
+        "name": "ADSL Status",
+        "lights": [
+            "44",
+            "42",
+            "43"
+        ],
+        "sensors": [],
+        "type": "Room",
+        "state": {
+            "all_on": false,
+            "any_on": false
+        },
+        "recycle": false,
+        "class": "Top floor",
+        "action": {
+            "on": false,
+            "bri": 1,
+            "hue": 24434,
+            "sat": 254,
+            "effect": "none",
+            "xy": [
+                0.1938,
+                0.6822
+            ],
+            "ct": 500,
+            "alert": "select",
+            "colormode": "xy"
+        }
+    }
+}
