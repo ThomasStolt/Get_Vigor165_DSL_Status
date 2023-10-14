@@ -1,5 +1,5 @@
-.gitignore
 credentials
 Philips_Hue_API_Key.txt
 nohup.out
 Get_Vigor165_DSL_Status.log
+.gitignore
