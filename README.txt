@@ -12,10 +12,12 @@
 #
 # Prerequisites
 # =============
-# Hardware
-# --------
+#
+# Required hardware
+# -----------------
 # 1. Draytek Vigor DSL Router (at this point, the only tested model ist Vigor 165)
 # 2. Philips Hue lights with HueBridge, all connected and working
+# 3. A linux system to hosts this tool (a Raspberry Pi will do)
 #
 # Software
 # --------
@@ -27,7 +29,7 @@
 #
 # You should receive a response, something like this:
 # 
-# SNMPv2-MIB::sysDescr.0 = STRING: DrayTek Corporation, Router Model: Vigor165, Version: 4.2.3.1_STD, Build Date/Time:Nov 11 2021 10:34:12
+# SNMPv2-MIB::sysDescr.0 = STRING: DrayTek Corporation, Router Model: Vigor165, Version: 4.2.3.1_STD...
 #
 # If you get an error and connot find out why, you can tryp nmap for
 # basic connectivity checking. You need to use the "-sU" flag to tell
