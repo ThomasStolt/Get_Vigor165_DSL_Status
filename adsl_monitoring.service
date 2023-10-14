@@ -1,0 +1,11 @@
+[Unit]
+Description=Monitor ADSL Router Status vor Draytek Vigor 165
+After=network-up.target
+
+[Service]
+ExecStart=/usr/bin/python3 /usr/local/bin/Get_Vigor165_DSL_Status.py
+User=adsl_monitor
+WorkingDirectory=/etc/adsl_monitoring
+
+[Install]
+WantedBy=multi-user.target

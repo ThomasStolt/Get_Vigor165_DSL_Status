@@ -2,7 +2,7 @@
 # Get Vigor 165 DSL Status
 # ========================
 #
-# This script will read the online status of the DrayTek Vigor 165 from the
+# This script will read the (A)DSL status of the DrayTek Vigor 165 from the
 # router via SNMP and control a group of Philips Hue lights to indicate the
 # status of your DSL connection via colours.
 # Red (solid): script could not estalish a connection to your DSL
@@ -16,6 +16,7 @@
 # --------
 # 1. Draytek Vigor DSL Router (at this point, the only tested model ist Vigor 165)
 # 2. Philips Hue lights with HueBridge, all connected and working
+#
 # Software
 # --------
 # Make sure your networking is all set up and that the device hosting this
@@ -44,29 +45,40 @@
 #
 # Nmap done: 1 IP address (1 host up) scanned in 23.93 seconds
 #
-# Usage
-# =====
-# You will need to edit the following DEFINITIONS:
+# Configuration
+# =============
+# You will need to edit the following DEFINITIONS in Get_Vigor165_DSL_Status.py:
 #
-# Replace this string with the IP address of your Hue Bridge
 # HUE_BRIDGE_IP = "PhilipsHueBridge"
+# Replace this string with the IP address or hostname of YOUR Hue Bridge
 #
-# Create a file with this name and put Philips Hue API Key in it.
-# This file needs to be found by this script (just same directory will do):
 # API_KEY_FILE_NAME = "Philips_Hue_API_Key.txt"
+# Create a file with this name and put Philips Hue API Key in it.
+# This file needs to be found by this script (use the same directory)
 #
 # GROUP_NR = "17"
 # This is the group of Hue lights, that you want this scrip to control.
+# At this point, this script has only been tested with Hue Play light bars.
 # A simple way of finding out which groups you have is using this
 # request in a browser pointing towards your Hue bridge:
 # http://philipshuebridge/api/<your_API_key>/groups/
-# but that is hard to read, if you are using command line, use this:
+# but that is hard to read. If you are using command line, you can use this:
 #
 # curl -s http://<Hue_bridge_IP_address>/api/<your_API_key>/groups/ | jq .| grep -E '"[0-9]+": {|"name":'
 #
-# You might need to install jq first. This will list the numbers of your
-# lights followed by their respective names for identification.
+# You might need to install jq first. That will list the numbers of your
+# lights followed by their respective names for easier identification.
 #
+# Installation
+# ============
+# After you configured everthing in the step above, run the shell script
+# adsl_config.sh. That script takes one argument like so:
+# --check - checks whether this script is already installed as a systemd service
+# --install - creates a user "adsl_monitor" for the systemd service
+#             installs the systemd service "adsl_monitoring.service"
+#             copies the Python script "Get_Vigor165_DSL_Status.py to /usr/local/bin
+#             copies the Philips_Hue_API_Key.txt to /etc/adsl_monitoring/
+# --remove - removes everything that has been installed by --install
 #
 # Startup
 # =======
