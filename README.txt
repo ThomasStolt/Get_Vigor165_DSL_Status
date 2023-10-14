@@ -31,24 +31,26 @@
 # 
 # SNMPv2-MIB::sysDescr.0 = STRING: DrayTek Corporation, Router Model: Vigor165, Version: 4.2.3.1_STD...
 #
-# If you get an error and connot find out why, you can tryp nmap for
+# If you get an error and connot find out why, you can try nmap for
 # basic connectivity checking. You need to use the "-sU" flag to tell
 # nmap to scan UDP ports (SNMP is UDP, not TCP) and you likely need to
 # use sudo:
 #
 # pi@raspberry-pi:~ % sudo nmap -sU <router_IP_address>
 # Starting Nmap 7.93 ( https://nmap.org ) at 2023-04-29 10:12 CEST
-# Nmap scan report for 192.168.2.2
+# Nmap scan report for <router_IP_address>
 # Host is up (0.037s latency).
 # Not shown: 999 open|filtered udp ports (no-response)
 # PORT    STATE SERVICE
-# 161/udp open  snmp
+# 161/udp open  snmp    <-- this is what you are looking for!!!
 # MAC Address: 00:1D:AA:XX:XX:XX (DrayTek)
 #
 # Nmap done: 1 IP address (1 host up) scanned in 23.93 seconds
 #
+#
 # Configuration
 # =============
+#
 # You will need to edit the following DEFINITIONS in Get_Vigor165_DSL_Status.py:
 #
 # HUE_BRIDGE_IP = "PhilipsHueBridge"
@@ -56,11 +58,12 @@
 #
 # API_KEY_FILE_NAME = "Philips_Hue_API_Key.txt"
 # Create a file with this name and put Philips Hue API Key in it.
-# This file needs to be found by this script (use the same directory)
+# This file needs to be found by the adsl_config.sh script (just use the
+# same directory)
 #
 # GROUP_NR = "17"
-# This is the group of Hue lights, that you want this scrip to control.
-# At this point, this script has only been tested with Hue Play light bars.
+# This is the group of Hue lights, that you want this script to control.
+# At this point, this script has only been tested with "Hue Play" light bars.
 # A simple way of finding out which groups you have is using this
 # request in a browser pointing towards your Hue bridge:
 # http://philipshuebridge/api/<your_API_key>/groups/
@@ -71,37 +74,42 @@
 # You might need to install jq first. That will list the numbers of your
 # lights followed by their respective names for easier identification.
 #
+#
 # Installation
 # ============
-# After you configured everthing in the step above, run the shell script
-# adsl_config.sh. That script takes one argument like so:
-# --check - checks whether this script is already installed as a systemd service
+#
+# After you configured everthing in the Configuration step above, run the shell
+# script adsl_config.sh with sudo. That script takes one argument like so:
+# --check   - checks whether this tool is already installed as a systemd service
 # --install - creates a user "adsl_monitor" for the systemd service
 #             installs the systemd service "adsl_monitoring.service"
 #             copies the Python script "Get_Vigor165_DSL_Status.py to /usr/local/bin
 #             copies the Philips_Hue_API_Key.txt to /etc/adsl_monitoring/
-# --remove - removes everything that has been installed by --install
+# --remove  - removes everything that has been installed by --install
 #
-# Startup
-# =======
+# After you have done the --install above, you should have a service running.
+# If all goes well, your lights should turn green and slowly dimm down over the
+# next 10 minutes or so. If they turn red, then there is a connectivity issue.
+# In that case check the steps above.
 #
-# When starting, the script will check the status immideately. When the
-# router reboots, it goes through these statuses in this order:
-# 
+#
+# What the Colours mean
+# =====================
+#
 # Solid Red
 # ---------
-# The Router is not available, likely the router is off, rebooting or
+# The Router is not available, likely the router is off or rebooting, or
 # you have a networking issue.
 #
 # Fast Blinking Red
 # -----------------
-# "READY" mode => Router is disconnected and has not yet begun
-# negotiation the connection speed
+# "READY" mode => The DSL connection is disconnected and has not yet begun
+# negotiating the connection speed
 # 
 # Slow Blinking Red
 # -----------------
-# "TRAINING" mode => Router is currently negotiation speed with its
-# counterpart at the service provider
+# "TRAINING" mode => Router is currently negotiation the DSL speed with its
+# counterpart at your service provider
 #
 # Solid Green (slowly dimming)
 # ----------------------------
@@ -115,7 +123,7 @@
 # this will query the adslAturCurrStatus attribute from the router, the
 # returned value is a string, containing a set of octets, representing
 # then status of the router. We do some simple string matching as follows:
-
+#
 # If the string contains the following numbers, we are in SHOWTIME:
 # 53 48 4F 57 54 49 4D 45
 # S  H  O  W  T  I  M  E
