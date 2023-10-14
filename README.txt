@@ -57,9 +57,9 @@
 # Replace this string with the IP address or hostname of YOUR Hue Bridge
 #
 # API_KEY_FILE_NAME = "Philips_Hue_API_Key.txt"
-# Create a file with this name and put Philips Hue API Key in it.
-# This file needs to be found by the adsl_config.sh script (just use the
-# same directory)
+# Rename the Philips_Hue_API_Key.txt.example by removing ".example" and put
+# your API key in it. This file needs to be found by the adsl_config.sh
+# script, just use the same directory.
 #
 # GROUP_NR = "17"
 # This is the group of Hue lights, that you want this script to control.
