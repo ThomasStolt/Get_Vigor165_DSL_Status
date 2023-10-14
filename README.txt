@@ -20,8 +20,8 @@
 # Software
 # --------
 # Make sure your networking is all set up and that the device hosting this
-# script can ping the router. Switch on SNMP on your router and test the
-# connectivity from your host using this command:
+# script can ping the router and the Hue bridge. Switch on SNMP on your router and
+# test the connectivity from your host using this command:
 #
 # pi@raspberry-pi:~ % snmpgetnext -v 1 -r 0 -c public <router_IP_address> .1.3.6.1
 #
