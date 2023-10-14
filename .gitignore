@@ -1,3 +1,4 @@
+.gitignore
 credentials
 Philips_Hue_API_Key.txt
 nohup.out
