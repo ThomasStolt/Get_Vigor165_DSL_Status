@@ -34,6 +34,7 @@ SHOWTIME = "53 48 4F 57 54 49 4D 45"
 # FUNCTIONS #
 #===========#
 
+
 # This will switch the lights on and set the brightness to bri
 # The colour of the lights will be whatever the last colour of that light was
 def lights_on(bri):
