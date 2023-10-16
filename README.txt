@@ -10,7 +10,6 @@
 # Yellow (flashing slow)     -> Vigor is trying to establisha DSL connection
 # Green  (slowly fading out) -> DSL connection is established, you are connected
 #
-#
 # Prerequisites
 # =============
 #
