@@ -75,20 +75,22 @@ but that is hard to read. If you are using command line, you can use this:
 curl -s http://<Hue_bridge_IP_address>/api/<your_API_key>/groups/ | jq .| grep -E '"[0-9]+": {|"name":'
 ```
 
-You might need to install jq first. That will list the numbers of your lights followed by their respective names for easier identification.
+You might need to install jq first. That will list the groups number (usually rooms) of your lights followed by their respective names for easier identification.
 
 ## Installation
 
-#
-# After you configured everthing in the Configuration step above, run the shell
-# script adsl_config.sh with sudo. That script takes one argument like so:
-# --check   - checks whether this tool is already installed as a systemd service
-# --install - creates a user "adsl_monitor" for the systemd service
-#             installs the systemd service "adsl_monitoring.service"
-#             copies the Python script "Get_Vigor165_DSL_Status.py to /usr/local/bin
-#             copies the Philips_Hue_API_Key.txt to /etc/adsl_monitoring/
-# --remove  - removes everything that has been installed by --install
-#
+After you configured everthing in the Configuration step above, run the shell script adsl_config.sh with sudo. That script takes one argument like so:
+
+``` --check ``` this checks whether this tool is already installed as a systemd service
+``` --install ``` this takes the following steps:
+- creates a user "adsl_monitor" for the systemd service
+- installs the systemd service "adsl_monitoring.service"
+- copies the Python script "Get_Vigor165_DSL_Status.py to /usr/local/bin
+- copies the Philips_Hue_API_Key.txt to /etc/adsl_monitoring/
+``` --remove ```
+- removes everything that has been installed by ``` --install ```
+
+
 # After you have done the --install above, you should have a service running.
 # If all goes well, your lights should turn green and slowly dimm down over the
 # next 10 minutes or so. If they turn red, then there is a connectivity issue.
