@@ -16,14 +16,9 @@ Green  (slowly fading out) -> DSL connection is established, you are connected
 2. Philips Hue lights with HueBridge, all connected and working
 3. A linux system to hosts this tool (a Raspberry Pi will do)
 
-
-
 ### Software
 
-Make sure your networking is all set up and that the device hosting this
-script can ping the router and the Hue bridge. Switch on SNMP on your router and
-test the connectivity from your host using the following command. You will need
-to install net-snmp for this to work:
+Make sure your networking is all set up and that the device hosting this script can ping the router and the Hue bridge. Switch on SNMP on your router and test the connectivity from your host using the following command. You will need to install net-snmp for this to work:
 
 pi@raspberry-pi:~ % snmpgetnext -v 1 -r 0 -c public <router_IP_address> .1.3.6.1
 
