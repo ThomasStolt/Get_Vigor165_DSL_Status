@@ -24,7 +24,7 @@ This program will monitor the online status of your DrayTek (Vigor 165) and indi
 
 Make sure your networking is all set up and that the device hosting this script can ping the router and the Hue bridge. Switch on SNMP on your router and test the connectivity from your host using the following command. You will need to install net-snmp for this to work:
 
-pi@raspberry-pi:~ % snmpgetnext -v 1 -r 0 -c public <router_IP_address> .1.3.6.1
+''pi@raspberry-pi:~ % snmpgetnext -v 1 -r 0 -c public <router_IP_address> .1.3.6.1''
 
 You should receive a response, something like this:
 
