@@ -64,7 +64,8 @@ Rename `` Philips_Hue_API_Key.txt.example `` to `` Philips_Hue_API_Key.txt `` an
 
 
 
-GROUP_NR = "17"
+```GROUP_NR = "17"```
+
 This is the group of Hue lights, that you want this script to control. At this point, this script has only been tested with "Hue Play" light bars. A simple way of finding out which groups you have is using this request in a browser pointing towards your Hue bridge:
 
 ``` http://philipshuebridge/api/<your_API_key>/groups/ ```
@@ -81,13 +82,21 @@ You might need to install jq first. That will list the groups number (usually ro
 
 After you configured everthing in the Configuration step above, run the shell script adsl_config.sh with sudo. That script takes one argument like so:
 
-``` --check ``` this checks whether this tool is already installed as a systemd service
-``` --install ``` this takes the following steps:
+``` --check ```
+
+this checks whether this tool is already installed as a systemd service
+
+``` --install ```
+
+this takes the following steps:
+
 - creates a user "adsl_monitor" for the systemd service
 - installs the systemd service "adsl_monitoring.service"
 - copies the Python script "Get_Vigor165_DSL_Status.py to /usr/local/bin
 - copies the Philips_Hue_API_Key.txt to /etc/adsl_monitoring/
+
 ``` --remove ```
+
 - removes everything that has been installed by ``` --install ```
 
 
