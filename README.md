@@ -56,7 +56,7 @@ Replace this string with the IP address or hostname of your Hue Bridge:
 
 ```HUE_BRIDGE_IP = "PhilipsHueBridge```
 
-Rename the Philips_Hue_API_Key.txt.example by removing ".example" and put your API key in it. This file needs to be found by the adsl_config.sh script, just use the same directory.
+Rename the `` Philips_Hue_API_Key.txt.example `` by removing ".example" and put your API key in it. This file needs to be found by the adsl_config.sh script, just use the same directory.
 
 ```API_KEY_FILE_NAME = "Philips_Hue_API_Key.txt"```
 
