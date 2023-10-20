@@ -1,19 +1,18 @@
-*Get Vigor 165 DSL Status
+# Get Vigor 165 DSL Status
 
 This program will monitor the online status of your DrayTek (Vigor 165) and indicate the status via a set of Hue lights:
 
-#
-# Red    (solid)             -> no connection to the Vigor, e. g. rebooting
-# Red    (flashing fast)     -> DSL disconnected
-# Yellow (flashing slow)     -> Vigor is trying to establisha DSL connection
-# Green  (slowly fading out) -> DSL connection is established, you are connected
-#
 
-** Prerequisites
+Red    (solid)             -> no connection to the Vigor, e. g. rebooting
+Red    (flashing fast)     -> DSL disconnected
+Yellow (flashing slow)     -> Vigor is trying to establisha DSL connection
+Green  (slowly fading out) -> DSL connection is established, you are connected
 
-*1. Überschrift
-**2. Überschrift
-***3. Überschrift
+## Prerequisites
+
+# 1. Überschrift
+## 2. Überschrift
+### 3. Überschrift
 
 # =============
 #
