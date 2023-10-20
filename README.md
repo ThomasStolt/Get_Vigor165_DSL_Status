@@ -105,57 +105,44 @@ adsl_config.sh --remove
 
 - removes everything that has been installed by ``` --install ```
 
+After you have done the ```--install``` above, you should have a service running. If all goes well, your lights should turn green and slowly dimm down over the next 10 minutes or so. If they turn red, then there is a connectivity issue. In that case check the steps above.
 
-# After you have done the --install above, you should have a service running.
-# If all goes well, your lights should turn green and slowly dimm down over the
-# next 10 minutes or so. If they turn red, then there is a connectivity issue.
-# In that case check the steps above.
-#
-#
-# What the Colours mean
-# =====================
-#
-# Solid Red
-# ---------
-# The Router is not available, likely the router is off or rebooting, or
-# you have a networking issue.
-#
-# Fast Blinking Red
-# -----------------
-# "READY" mode => The DSL connection is disconnected and has not yet begun
-# negotiating the connection speed
-# 
-# Slow Blinking Red
-# -----------------
-# "TRAINING" mode => Router is currently negotiation the DSL speed with its
-# counterpart at your service provider
-#
-# Solid Green (slowly dimming)
-# ----------------------------
-# "SHOWTIME" mode => Router has connected to the Service Provider and
-# has negotiated a speed, this equals "normal operation". The green light
-# will slowly be dimmed until it is completely switched off.
-#
-# We use SNMP to pull the status of the DSL Connection from the router
-# using the following command:
-# snmpget -v 1 -r 0 -c public <router_IP> .1.3.6.1.2.1.10.94.1.1.3.1.6.4
-# this will query the adslAturCurrStatus attribute from the router, the
-# returned value is a string, containing a set of octets, representing
-# then status of the router. We do some simple string matching as follows:
-#
-# If the string contains the following numbers, we are in SHOWTIME:
-# 53 48 4F 57 54 49 4D 45
-# S  H  O  W  T  I  M  E
-#
-# For TRAINING mode the numbers are this:
-# 54 52 41 49 4E 49 4E 47 
-# T  R  A  I  N  I  N  G
-#
-# And lastly for READY, the numbers are this:
-# 52 45 41 44 59
-# R  E  A  D  Y
-#
-# There is also a FAIL state, not sure when exactly this occurs, but in the
-# get_adsl_status function this (and any other values) will be ignored
-#
-#==============================================================================#
+## What the Colours mean
+
+- Solid Red
+  - The Router cannot be contacted, likely the router is off or rebooting, or you have a networking issue.
+- Fast Blinking Red
+  - "READY" mode => The DSL connection is disconnected and has not yet begun negotiating the connection speed
+- Slow Blinking Red
+  - "TRAINING" mode => Router is currently negotiation the DSL speed with its counterpart at your service provider
+- Solid Green (slowly dimming)
+  - "SHOWTIME" mode => Router has connected to the Service Provider and has negotiated a speed, this equals "normal operation". The green light will slowly be dimmed until it is completely switched off.
+
+## How does this scrip work exaactly?
+
+We use SNMP to pull the status of the DSL Connection from the router using the following command:
+
+```console
+snmpget -v 1 -r 0 -c public <router_IP> .1.3.6.1.2.1.10.94.1.1.3.1.6.4
+```
+
+this will query an SNMP MIB attribute called "adslAturCurrStatus" from the router, the returned value is a string containing a set of octets representing the connection status of the router. We do some simple string matching as follows:
+
+If the string contains the following numbers, we are in SHOWTIME:
+
+53 48 4F 57 54 49 4D 45 it means:
+
+S  H  O  W  T  I  M  E
+
+For TRAINING mode the numbers are this:
+
+54 52 41 49 4E 49 4E 47 
+
+T  R  A  I  N  I  N  G
+
+And lastly for READY, the numbers are this:
+
+52 45 41 44 59
+R  E  A  D  Y
+
+There is also a FAIL state, not sure when exactly this occurs, but in the get_adsl_status function this (and any other values) will be ignored.
