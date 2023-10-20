@@ -32,7 +32,8 @@ You should receive a response, something like this:
 
 If you get an error and connot find out why, you can try nmap for basic connectivity checking. You need to use the "-sU" flag to tell nmap to scan UDP ports (SNMP is UDP, not TCP) and you likely need to use sudo:
 
-``` pi@raspberry-pi:~ % sudo nmap -sU <router_IP_address>
+```shell
+pi@raspberry-pi:~ % sudo nmap -sU <router_IP_address>
 Starting Nmap 7.93 ( https://nmap.org ) at 2023-04-29 10:12 CEST
 Nmap scan report for <router_IP_address>
 Host is up (0.037s latency).
