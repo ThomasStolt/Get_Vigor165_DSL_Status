@@ -32,7 +32,7 @@ You should receive a response, something like this:
 
 If you get an error and connot find out why, you can try nmap for basic connectivity checking. You need to use the "-sU" flag to tell nmap to scan UDP ports (SNMP is UDP, not TCP) and you likely need to use sudo:
 
-`` pi@raspberry-pi:~ % sudo nmap -sU <router_IP_address>
+``` pi@raspberry-pi:~ % sudo nmap -sU <router_IP_address>
 Starting Nmap 7.93 ( https://nmap.org ) at 2023-04-29 10:12 CEST
 Nmap scan report for <router_IP_address>
 Host is up (0.037s latency).
@@ -40,7 +40,8 @@ Not shown: 999 open|filtered udp ports (no-response)
 PORT    STATE SERVICE
 161/udp open  snmp    <-- this is what you are looking for!!!
 MAC Address: 00:1D:AA:XX:XX:XX (DrayTek)
-Nmap done: 1 IP address (1 host up) scanned in 23.93 seconds ``
+Nmap done: 1 IP address (1 host up) scanned in 23.93 seconds ```
+
 
 
 
