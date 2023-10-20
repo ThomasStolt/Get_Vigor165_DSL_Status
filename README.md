@@ -39,7 +39,7 @@ Nmap scan report for <router_IP_address>
 Host is up (0.037s latency).
 Not shown: 999 open|filtered udp ports (no-response)
 PORT    STATE SERVICE
-161/udp open  snmp    <-- this is what you are looking for!!!
+161/udp open  snmp    *<-- this is what you are looking for!!!*
 MAC Address: 00:1D:AA:XX:XX:XX (DrayTek)
 Nmap done: 1 IP address (1 host up) scanned in 23.93 seconds
 ```
