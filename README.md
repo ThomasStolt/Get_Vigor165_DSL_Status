@@ -56,28 +56,29 @@ Replace this string with the IP address or hostname of your Hue Bridge:
 
 ```HUE_BRIDGE_IP = "PhilipsHueBridge```
 
-Get your Philips API key (either here: [https://developers.meethue.com/develop/get-started-2/](https://developers.meethue.com/develop/get-started-2/) or, if that address has changed you have to google for it). Rename `` Philips_Hue_API_Key.txt.example `` to `` Philips_Hue_API_Key.txt `` and put your API key in it. This file needs to be found by the adsl_config.sh script, just use the same directory.
+Get your Philips API key (either here: [https://developers.meethue.com/develop/get-started-2/](https://developers.meethue.com/develop/get-started-2/) or, if that address has changed you have to google for it).
+
+Rename `` Philips_Hue_API_Key.txt.example `` to `` Philips_Hue_API_Key.txt `` and put your API key in it. This file needs to be found by the adsl_config.sh script, just use the same directory.
 
 ```API_KEY_FILE_NAME = "Philips_Hue_API_Key.txt"```
 
 
-#
-# GROUP_NR = "17"
-# This is the group of Hue lights, that you want this script to control.
-# At this point, this script has only been tested with "Hue Play" light bars.
-# A simple way of finding out which groups you have is using this
-# request in a browser pointing towards your Hue bridge:
-# http://philipshuebridge/api/<your_API_key>/groups/
-# but that is hard to read. If you are using command line, you can use this:
-#
-# curl -s http://<Hue_bridge_IP_address>/api/<your_API_key>/groups/ | jq .| grep -E '"[0-9]+": {|"name":'
-#
-# You might need to install jq first. That will list the numbers of your
-# lights followed by their respective names for easier identification.
-#
-#
-# Installation
-# ============
+
+GROUP_NR = "17"
+This is the group of Hue lights, that you want this script to control. At this point, this script has only been tested with "Hue Play" light bars. A simple way of finding out which groups you have is using this request in a browser pointing towards your Hue bridge:
+
+``` http://philipshuebridge/api/<your_API_key>/groups/ ```
+
+but that is hard to read. If you are using command line, you can use this:
+
+```console
+curl -s http://<Hue_bridge_IP_address>/api/<your_API_key>/groups/ | jq .| grep -E '"[0-9]+": {|"name":'
+```
+
+You might need to install jq first. That will list the numbers of your lights followed by their respective names for easier identification.
+
+## Installation
+
 #
 # After you configured everthing in the Configuration step above, run the shell
 # script adsl_config.sh with sudo. That script takes one argument like so:
