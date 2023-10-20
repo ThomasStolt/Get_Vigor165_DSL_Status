@@ -82,11 +82,15 @@ You might need to install jq first. That will list the groups number (usually ro
 
 After you configured everthing in the Configuration step above, run the shell script adsl_config.sh with sudo. That script takes one argument like so:
 
-``` --check ```
+```console
+adsl_config.sh --check
+```
 
 this checks whether this tool is already installed as a systemd service
 
-``` --install ```
+```console
+--install
+```
 
 this takes the following steps:
 
