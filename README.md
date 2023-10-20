@@ -5,9 +5,12 @@ This program will monitor the online status of your DrayTek (Vigor 165) and indi
 
 - Red (solid)
   - no connection to the Vigor, e. g. rebooting
-- Red  (flashing fast) -> DSL disconnected
-- Yellow (flashing slow) -> Vigor is trying to establisha DSL connection
-- Green (slowly fading out) -> DSL connection is established, you are connected
+- Red  (flashing fast)
+  - DSL disconnected
+- Yellow (flashing slowly)
+  - Vigor is trying to establisha DSL connection
+- Green (slowly fading out)
+  - DSL connection is established, you are connected!
 
 ## Prerequisites
 
