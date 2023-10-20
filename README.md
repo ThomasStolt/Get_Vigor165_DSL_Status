@@ -80,7 +80,7 @@ You might need to install jq first. That will list the groups number (usually ro
 
 ## Installation
 
-After you configured everthing in the Configuration step above, run the shell script adsl_config.sh with sudo. That script takes one argument like so:
+After you configured everthing in the Configuration step above, run the shell script adsl_config.sh with sudo. That script takes one out of three arguments like so:
 
 ```console
 adsl_config.sh --check
@@ -89,7 +89,7 @@ adsl_config.sh --check
 this checks whether this tool is already installed as a systemd service
 
 ```console
---install
+adsl_config.sh --install
 ```
 
 this takes the following steps:
@@ -99,7 +99,9 @@ this takes the following steps:
 - copies the Python script "Get_Vigor165_DSL_Status.py to /usr/local/bin
 - copies the Philips_Hue_API_Key.txt to /etc/adsl_monitoring/
 
-``` --remove ```
+```console
+adsl_config.sh --remove
+```
 
 - removes everything that has been installed by ``` --install ```
 
