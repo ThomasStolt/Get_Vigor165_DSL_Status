@@ -28,7 +28,7 @@ pi@raspberry-pi:~ % snmpgetnext -v 1 -r 0 -c public <router_IP_address> .1.3.6.1
 
 You should receive a response, something like this:
 
-SNMPv2-MIB::sysDescr.0 = STRING: DrayTek Corporation, Router Model: Vigor165, Version: 4.2.3.1_STD...
+> SNMPv2-MIB::sysDescr.0 = STRING: DrayTek Corporation, Router Model: Vigor165, Version: 4.2.3.1_STD...
 
 If you get an error and connot find out why, you can try nmap for
 basic connectivity checking. You need to use the "-sU" flag to tell
