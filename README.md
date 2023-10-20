@@ -52,9 +52,10 @@ Nmap done: 1 IP address (1 host up) scanned in 23.93 seconds
 
 You will need to edit the following DEFINITIONS in Get_Vigor165_DSL_Status.py:
 
+Replace this string with the IP address or hostname of your Hue Bridge:
 ```HUE_BRIDGE_IP = "PhilipsHueBridge```
 
-Replace this string with the IP address or hostname of YOUR Hue Bridge
+
 
 #
 # API_KEY_FILE_NAME = "Philips_Hue_API_Key.txt"
