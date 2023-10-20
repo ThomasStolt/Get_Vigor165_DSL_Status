@@ -34,7 +34,7 @@ You should receive a response, something like this:
 SNMPv2-MIB::sysDescr.0 = STRING: DrayTek Corporation, Router Model: Vigor165, Version: 4.2.3.1_STD...
 ```
 
-If you get an error and connot find out why, you can try nmap for basic connectivity checking. You need to use the "-sU" flag to tell nmap to scan UDP ports (SNMP is UDP, not TCP) and you likely need to use sudo:
+If you get an error it might be helful to try nmap for basic connectivity checking. Simply use the "-sU" flag to tell nmap to scan UDP ports (SNMP is UDP, not TCP) and you likely need to use sudo:
 
 ```console
 pi@raspberry-pi:~ % sudo nmap -sU <router_IP_address>
@@ -48,17 +48,14 @@ MAC Address: 00:1D:AA:XX:XX:XX (DrayTek)
 Nmap done: 1 IP address (1 host up) scanned in 23.93 seconds
 ```
 
-
-
-
-
 ## Configuration
 
+You will need to edit the following DEFINITIONS in Get_Vigor165_DSL_Status.py:
 
-# You will need to edit the following DEFINITIONS in Get_Vigor165_DSL_Status.py:
-#
-# HUE_BRIDGE_IP = "PhilipsHueBridge"
-# Replace this string with the IP address or hostname of YOUR Hue Bridge
+```HUE_BRIDGE_IP = "PhilipsHueBridge```
+
+Replace this string with the IP address or hostname of YOUR Hue Bridge
+
 #
 # API_KEY_FILE_NAME = "Philips_Hue_API_Key.txt"
 # Rename the Philips_Hue_API_Key.txt.example by removing ".example" and put
