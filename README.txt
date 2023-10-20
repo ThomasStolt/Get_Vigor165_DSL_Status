@@ -1,4 +1,4 @@
-* Get Vigor 165 DSL Status
+*Get Vigor 165 DSL Status
 
 This program will monitor the online status of your DrayTek (Vigor 165) and indicate the status via a set of Hue lights:
 
