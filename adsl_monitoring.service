@@ -1,5 +1,5 @@
 [Unit]
-Description=Monitor ADSL Router Status vor Draytek Vigor 165
+Description=Monitor ADSL Router Status for Draytek Vigor 165
 After=network-up.target
 
 [Service]
