@@ -1,3 +1,5 @@
+# this approach has been given up, it does not seem that asyncio is a good fit for this use case
+
 # ======= #
 # IMPORTS #
 # ======= #
@@ -31,6 +33,7 @@ SNMP_OID = ".1.3.6.1.2.1.10.94.1.1.3.1.6.4"
 READY = "52 45 41 44 59"
 TRAINING = "54 52 41 49 4E 49 4E 47"
 SHOWTIME = "53 48 4F 57 54 49 4D 45"
+FIRST_RUN = True
 
 #===========#
 # FUNCTIONS #
@@ -84,57 +87,69 @@ async def slowly_dim_lights():
     print("DEBUG: Completed slowly_dim_lights function.")
 
 async def get_adsl_status(delay):
-    print(f"DEBUG: Entering get_adsl_status function with delay: {delay}...")
+    print("DEBUG: Entering get_adsl_status...")
     await asyncio.sleep(delay)
     
     process = subprocess.Popen(snmpget_cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
     stdout_data, stderr_data = process.communicate()
     
-    # Handle errors just like the original function
-    error_start = False
-    while stderr_data:
-        if not error_start:
-            print(f"Entering error status at: {time.strftime('%Y-%m-%d %H:%M:%S', time.gmtime())}")
-            error_start = True
-            await set_colour("red")
-            await lights_on(254)
+    if stderr_data:
+        await set_colour("red")
+        await lights_on(254)
         
+        # ICMP ping loop
+        while not await ping_device():
+            await asyncio.sleep(5)
+            
+        # Retry getting SNMP status
         process = subprocess.Popen(snmpget_cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
         stdout_data, stderr_data = process.communicate()
-        await asyncio.sleep(2)
     
     status = stdout_data.decode().strip()
-    print(f"DEBUG: ADSL status obtained: {status}")
     return status
+
 
 async def check_snmp_status():
     global previous_adsl_status
-    print("DEBUG: Entering check_snmp_status function...")
-
+    global FIRST_RUN
+    status = await get_adsl_status(0)
     while True:
-        status = await get_adsl_status(5) # Here 2 seconds delay is used for illustration. Adjust as needed.
+        
         if READY in status:
-            print("DEBUG: ADSL status is READY.")
-            await lights_on(254)
-            await set_colour("green")
+            asyncio.create_task(blink_lights("red", 1))
+            previous_adsl_status = "READY"
+
         elif TRAINING in status:
-            print("DEBUG: ADSL status is TRAINING.")
-            await lights_on(127)
-            await set_colour("yellow")
-        elif SHOWTIME in status and (previous_adsl_status == "REDAY" or previous_adsl_status == "TRAINING"):
-            print("DEBUG: ADSL status is SHOWTIME after being READY or TRAINING.")
-            await lights_on(254)
-            await set_colour("green")
-            asyncio.create_task(slowly_dim_lights())
-            previous_adsl_status = "SHOWTIME"
-        else:
-            print("DEBUG: ADSL status is unknown or SHOWTIME without prior READY/TRAINING.")
-            await lights_off()
-            if SHOWTIME in status:
+            asyncio.create_task(blink_lights("yellow", 1))
+            previous_adsl_status = "TRAINING"
+
+        elif SHOWTIME in status:
+            if FIRST_RUN:
+                FIRST_RUN = False
+                await lights_on(0)
+                await set_colour("green")
+                await lights_off()
+                for _ in range(3):  # Blink 3 times initially
+                    print("DEBUG: Blinking 3 times green...")
+                    await lights_on(254)
+                    await asyncio.sleep(2)
+                    await lights_off()
+                    await asyncio.sleep(2)
+
+            if previous_adsl_status in ["READY", "TRAINING"]:
+                await lights_on(254)
+                await set_colour("green")
+                asyncio.create_task(slowly_dim_lights())
                 previous_adsl_status = "SHOWTIME"
-                
-        await asyncio.sleep(10)  # Check every 10 seconds. Adjust as needed.
-    print("DEBUG: Exiting check_snmp_status function.")
+            else:
+                await lights_off()
+                previous_adsl_status = "SHOWTIME"
+        
+        else:
+            await lights_off()
+
+        status = await get_adsl_status(5)
+
 
 async def ping_device():
     print("DEBUG: Entering ping_device function...")
@@ -142,6 +157,15 @@ async def ping_device():
     proc.communicate()
     print(f"DEBUG: Ping result: {proc.returncode == 0}")
     return proc.returncode == 0
+
+async def blink_lights(colour, duration):
+    await set_colour(colour)
+    while True:
+        await lights_on(254)
+        await asyncio.sleep(duration)
+        await lights_off()
+        await asyncio.sleep(duration)
+
 
 #=======#
 # START #
@@ -169,3 +193,20 @@ snmpget_cmd = [SNMP_GET_CMD, SNMP_VERSION_OPT, SNMP_VERSION, SNMP_RETRY_OPT, SNM
 asyncio.run(check_snmp_status())
 
 print("DEBUG: Script finished.")
+
+'''
+I would like this to work the following way:
+- reqest the SNMP status every 5 seconds
+- if the SNMP status command fails
+  - turn the light solid red
+  - go into a ICMP ping, ping once per second until it returns successfully
+  - after that request the SNMP status every 5 seconds
+    - if the SNMP status command returns READY
+      - turn the light red and blink at 1 seconds intervall
+    - if the SNMP status command returns TRAINING
+      - turn the light yellow and blink at 1 seconds intervall
+    - if the SNMP status command returns SHOWTIME (after it came out of TRAINING or READY)
+      - turn the light solid green slowly dimming to 0 brightness
+- continiously request the SNMP status every 5 seconds, but leave the lights off
+- also, when the script first starts and the SNMP status command returns SHOWTIME, let the lights blink green 3 times and continue with the above
+'''
