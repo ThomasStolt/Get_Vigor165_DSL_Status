@@ -193,20 +193,3 @@ snmpget_cmd = [SNMP_GET_CMD, SNMP_VERSION_OPT, SNMP_VERSION, SNMP_RETRY_OPT, SNM
 asyncio.run(check_snmp_status())
 
 print("DEBUG: Script finished.")
-
-'''
-I would like this to work the following way:
-- reqest the SNMP status every 5 seconds
-- if the SNMP status command fails
-  - turn the light solid red
-  - go into a ICMP ping, ping once per second until it returns successfully
-  - after that request the SNMP status every 5 seconds
-    - if the SNMP status command returns READY
-      - turn the light red and blink at 1 seconds intervall
-    - if the SNMP status command returns TRAINING
-      - turn the light yellow and blink at 1 seconds intervall
-    - if the SNMP status command returns SHOWTIME (after it came out of TRAINING or READY)
-      - turn the light solid green slowly dimming to 0 brightness
-- continiously request the SNMP status every 5 seconds, but leave the lights off
-- also, when the script first starts and the SNMP status command returns SHOWTIME, let the lights blink green 3 times and continue with the above
-'''
