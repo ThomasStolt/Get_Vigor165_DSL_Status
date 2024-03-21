@@ -1,6 +1,12 @@
 # Get Vigor 165 DSL Status
 
-This program will monitor the online status of your DrayTek (Vigor 165) and indicate the status via a set of Hue lights:
+If internet connectivity in your home goes down, it is often difficult to find out why: is it the WiFi? Is it the DSL connection? Is it your phone that has lost the WiFi connection? Or a myriad of other reasons.
+
+For me, my DSL router looses connectivity every so often. When then happens, it takes about a minute or so, until it has renegotiated the connection speed with its head end at the Service Provider. I wanted something that immideately shows, that the DSL connection is down. Luckily, I have many Hue lights at home, specifically some Hue Play Lights, that I don't have a real use for anymore. So I decide to use them as "DSL status lights". The the DSL connection goes down, it will turn those lights red! If the DSL router is in the negotiation ("Training") phase, the lights will turn yellow and if the connection is re-established, the lights will turn green, slowly fading out.
+
+Luckily the DrayTek Vigor routers speak SNMP, via which it is easy to find out, which connection state a router is currently in, which this tool is using.
+
+So, I created a systemd service that does that and can run on a RaspberryPi. This tool will monitor the online status of your DrayTek (Vigor 165) and indicate the status via a set of Hue lights:
 
 
 - Red (solid)
@@ -16,9 +22,9 @@ This program will monitor the online status of your DrayTek (Vigor 165) and indi
 
 ### Required hardware
 
-1. Draytek Vigor DSL Router (at this point, the only tested model ist Vigor 165)
-2. Philips Hue lights with HueBridge, all connected and working
-3. A linux system to hosts this tool (a Raspberry Pi will do)
+1. Draytek Vigor DSL Router. At this point, the only tested model ist Vigor 165.
+2. Philips Hue lights with HueBridge, all connected and working.
+3. A linux system to hosts this tool. As mentioned, a Raspberry Pi will do.
 
 ### Software
 
@@ -54,7 +60,7 @@ You will need to edit the following DEFINITIONS in Get_Vigor165_DSL_Status.py:
 
 Replace this string with the IP address or hostname of your Hue Bridge:
 
-```HUE_BRIDGE_IP = "PhilipsHueBridge```
+```HUE_BRIDGE_IP = "PhilipsHueBridge"```
 
 Get your Philips API key (either here: [https://developers.meethue.com/develop/get-started-2/](https://developers.meethue.com/develop/get-started-2/) or, if that address has changed you have to google for it).
 
@@ -80,7 +86,7 @@ You might need to install jq first. That will list the groups number (usually ro
 
 ## Installation
 
-After you configured everthing in the Configuration step above, run the shell script adsl_config.sh with sudo. That script takes one out of three arguments like so:
+After you configured everthing in the configuration steps above, run the shell script adsl_config.sh with sudo. That script takes one out of three arguments like so:
 
 ```console
 adsl_config.sh --check
@@ -105,7 +111,7 @@ adsl_config.sh --remove
 
 - removes everything that has been installed by ``` --install ```
 
-After you have done the ```--install``` above, you should have a service running. If all goes well, your lights should turn green and slowly dimm down over the next 10 minutes or so. If they turn red, then there is a connectivity issue. In that case check the steps above.
+After you have done the ```--install``` above, you should have a service running. If all goes well, your lights should turn green and slowly dimm down over the next 5 minutes or so. If they turn red, then there is a connectivity issue. In that case check the steps above.
 
 ## What the Colours mean
 
@@ -120,7 +126,7 @@ After you have done the ```--install``` above, you should have a service running
 
 ## How does this scrip work exaactly?
 
-We use SNMP to pull the status of the DSL Connection from the router using the following command:
+We use SNMP to poll the status of the DSL Connection from the router using the following command:
 
 ```console
 snmpget -v 1 -r 0 -c public <router_IP> .1.3.6.1.2.1.10.94.1.1.3.1.6.4
